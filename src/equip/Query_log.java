@@ -53,6 +53,7 @@ public class Query_log extends javax.swing.JFrame implements TableModelListener{
         B_query = new javax.swing.JButton();
         B_delete = new javax.swing.JButton();
         B_export = new javax.swing.JButton();
+        tx_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,6 +80,14 @@ public class Query_log extends javax.swing.JFrame implements TableModelListener{
             }
         });
 
+        tx_id.setText("输入设备型号");
+        tx_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tx_idActionPerformed(evt);
+                tx_idActionPerformed1(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,27 +95,30 @@ public class Query_log extends javax.swing.JFrame implements TableModelListener{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
+                        .addGap(93, 93, 93)
+                        .addComponent(tx_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
                         .addComponent(B_query)
-                        .addGap(44, 44, 44)
+                        .addGap(42, 42, 42)
                         .addComponent(B_delete)
-                        .addGap(45, 45, 45)
-                        .addComponent(B_export)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addGap(32, 32, 32)
+                        .addComponent(B_export))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_query)
                     .addComponent(B_delete)
-                    .addComponent(B_export))
+                    .addComponent(B_export)
+                    .addComponent(tx_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -129,6 +141,15 @@ public class Query_log extends javax.swing.JFrame implements TableModelListener{
         deleteFile();
         exportToExcel();
     }//GEN-LAST:event_B_exportActionPerformed
+
+    private void tx_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tx_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tx_idActionPerformed
+
+    private void tx_idActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tx_idActionPerformed1
+        // TODO add your handling code here:
+        B_queryActionPerformed(evt);
+    }//GEN-LAST:event_tx_idActionPerformed1
 
     /**
      * @param args the command line arguments
@@ -177,6 +198,7 @@ public class Query_log extends javax.swing.JFrame implements TableModelListener{
     private javax.swing.JButton B_query;
     private javax.swing.JTable dataTable;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField tx_id;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -266,8 +288,17 @@ public class Query_log extends javax.swing.JFrame implements TableModelListener{
 
     public void getSql() {
    
-                sql = "select * from maintain;";
-           
+//                sql = "select * from maintain;";
+        String tx;
+        tx=tx_id.getText().toString();
+        if(tx.equals("输入设备型号")||tx.isEmpty())
+        {
+             sql = "select * from maintain;";
+        }
+        else
+        {
+            sql="select * from maintain where product='"+tx+"';";
+        }
     }
 
     public void showData() {

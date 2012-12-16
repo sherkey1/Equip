@@ -16,7 +16,7 @@ public class NewEquip extends javax.swing.JFrame {
      * Creates new form NewEquip
      */
     MainWindow mainWindow;
-    String id,manufacturer,vendor,pro_time,an_time,an_person,phoneNamber,log;
+    String id,manufacturer,vendor,pro_time,an_time,an_person,phoneNamber;
     public NewEquip(MainWindow a) {
         initComponents();
         mainWindow=a;
@@ -45,9 +45,6 @@ public class NewEquip extends javax.swing.JFrame {
         t_anperson = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         t_phoneNumber = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        t_log = new javax.swing.JTextArea();
         B_newEquip = new javax.swing.JButton();
         B_backToMain = new javax.swing.JButton();
 
@@ -66,12 +63,6 @@ public class NewEquip extends javax.swing.JFrame {
         jLabel6.setText("安装人员");
 
         jLabel7.setText("手机号码");
-
-        jLabel8.setText("编修日志");
-
-        t_log.setColumns(20);
-        t_log.setRows(5);
-        jScrollPane1.setViewportView(t_log);
 
         B_newEquip.setText("完成");
         B_newEquip.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +87,6 @@ public class NewEquip extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -106,8 +96,7 @@ public class NewEquip extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(t_protime, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel8))
+                                        .addComponent(t_protime, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(56, 56, 56)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -134,7 +123,7 @@ public class NewEquip extends javax.swing.JFrame {
                         .addGap(243, 243, 243)
                         .addComponent(B_newEquip))
                     .addComponent(B_backToMain))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +152,7 @@ public class NewEquip extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(t_phoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addGap(52, 52, 52)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(B_newEquip)
                 .addGap(43, 43, 43))
         );
@@ -240,12 +225,9 @@ public class NewEquip extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField t_anperson;
     private javax.swing.JTextField t_antime;
     private javax.swing.JTextField t_id;
-    private javax.swing.JTextArea t_log;
     private javax.swing.JTextField t_manufacturer;
     private javax.swing.JTextField t_phoneNumber;
     private javax.swing.JTextField t_protime;
@@ -260,14 +242,14 @@ public class NewEquip extends javax.swing.JFrame {
         an_time=t_antime.getText().toString();
         an_person=t_anperson.getText().toString();
         phoneNamber=t_phoneNumber.getText().toString();
-        log=t_log.getText().toString();
+//        log=t_log.getText().toString();
     }
 
     private void InsertToMysql() {
         try
         {
         Connector connect=new Connector();
-        String sql="insert into equipment VALUES ('"+id+"','"+manufacturer+"','"+vendor+"','"+pro_time+"','"+an_time+"','"+an_person+"','"+phoneNamber+"','"+log+"');";
+        String sql="insert into equipment VALUES ('"+id+"','"+manufacturer+"','"+vendor+"','"+pro_time+"','"+an_time+"','"+an_person+"','"+phoneNamber+"');";
         connect.statement.executeUpdate(sql);
         }
         catch(Exception e)

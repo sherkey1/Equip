@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author 3
  */
-public class Listener extends Thread {
+public class Listener implements Runnable{
 
     String data = null;
     PrintStream out;
@@ -41,8 +41,9 @@ public class Listener extends Thread {
                     out.println("allow");
                 } else {
                     out.println("deny");
-                }
                 close();
+                }
+               
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,4 +65,8 @@ public class Listener extends Thread {
         reader.close();
         client.close();
     }
+//    public static void main(String[] args)
+//    {
+//        new Listener().start();
+//    }
 }

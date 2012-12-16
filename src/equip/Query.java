@@ -59,6 +59,7 @@ public class Query extends javax.swing.JFrame implements TableModelListener {
         jScrollPane2 = new javax.swing.JScrollPane();
         dataTable = new javax.swing.JTable();
         B_queryLog = new javax.swing.JButton();
+        tx_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,26 +101,36 @@ public class Query extends javax.swing.JFrame implements TableModelListener {
             }
         });
 
+        tx_id.setText("输入设备型号");
+        tx_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tx_idActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(B_query)
-                        .addGap(31, 31, 31)
-                        .addComponent(B_delete)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton3)
-                        .addGap(29, 29, 29)
-                        .addComponent(B_queryLog))
                     .addComponent(B_return, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(74, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tx_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(B_query)
+                .addGap(39, 39, 39)
+                .addComponent(B_delete)
+                .addGap(35, 35, 35)
+                .addComponent(jButton3)
+                .addGap(39, 39, 39)
+                .addComponent(B_queryLog)
+                .addGap(104, 104, 104))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +143,8 @@ public class Query extends javax.swing.JFrame implements TableModelListener {
                     .addComponent(B_query)
                     .addComponent(B_delete)
                     .addComponent(jButton3)
-                    .addComponent(B_queryLog))
+                    .addComponent(B_queryLog)
+                    .addComponent(tx_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
 
@@ -144,7 +156,8 @@ public class Query extends javax.swing.JFrame implements TableModelListener {
         // TODO add your handling code here:
         try {
             Connector c = new Connector();
-            String sql = "select * from equipment;";
+//            String sql = "select * from equipment;";
+            String sql=getSql();
             rs = (ResultSet) c.sm_updatable.executeQuery(sql);
             rsm = rs.getMetaData();
 
@@ -229,6 +242,11 @@ public class Query extends javax.swing.JFrame implements TableModelListener {
        }
     }//GEN-LAST:event_B_queryLogActionPerformed
 
+    private void tx_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tx_idActionPerformed
+        // TODO add your handling code here:
+        B_queryActionPerformed(evt);
+    }//GEN-LAST:event_tx_idActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -278,6 +296,7 @@ public class Query extends javax.swing.JFrame implements TableModelListener {
     private javax.swing.JTable dataTable;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField tx_id;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -365,5 +384,19 @@ public class Query extends javax.swing.JFrame implements TableModelListener {
             file.delete();
         }
         
+    }
+
+    private String getSql() {
+        String tx,sql;
+        tx=tx_id.getText().toString();
+        if(tx.equals("输入设备型号")||tx.isEmpty())
+        {
+            sql="select * from equipment;";
+        }
+        else
+        {
+            sql="select *from equipment where id='"+tx+"';";
+        }
+        return sql;
     }
 }
