@@ -48,7 +48,7 @@ public class NewMaintain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("产品型号");
+        jLabel1.setText("产品编号");
 
         tx_productId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

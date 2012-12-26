@@ -89,7 +89,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x4ea7;&#x54c1;&#x578b;&#x53f7;"/>
+        <Property name="text" type="java.lang.String" value="&#x4ea7;&#x54c1;&#x7f16;&#x53f7;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tx_productId">

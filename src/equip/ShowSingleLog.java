@@ -22,7 +22,7 @@ public class ShowSingleLog extends javax.swing.JFrame implements TableModelListe
     ResultSet rs;
     ResultSetMetaData rsm;
     DefaultTableModel model;
-    String[] columnNames={"序列号","设备型号","维修时间","维修人员","联系方式","维修日志"};
+    String[] columnNames={"序列号","设备编号","维修时间","维修人员","联系方式","维修日志"};
     Object[][] data =null;
     String id;
     

@@ -59,9 +59,9 @@
                                   <Component id="L_pwd" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tx_user" min="-2" pref="224" max="-2" attributes="0"/>
-                                  <Component id="tx_pwd" min="-2" pref="224" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tx_user" pref="224" max="32767" attributes="0"/>
+                                  <Component id="tx_pwd" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -90,7 +90,7 @@
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="L_pwd" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                          <Component id="tx_pwd" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="tx_pwd" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="50" max="32767" attributes="0"/>
                       <Component id="B_login" min="-2" pref="43" max="-2" attributes="0"/>
@@ -112,8 +112,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tx_user">
             </Component>
-            <Component class="javax.swing.JTextField" name="tx_pwd">
-            </Component>
             <Component class="javax.swing.JButton" name="B_login">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x767b;&#x5165;"/>
@@ -129,6 +127,8 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#x8bbe;&#x5907;&#x4fe1;&#x606f;&#x7ba1;&#x7406;"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="tx_pwd">
             </Component>
           </SubComponents>
         </Container>

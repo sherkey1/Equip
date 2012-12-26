@@ -22,7 +22,7 @@ public class Query_log extends javax.swing.JFrame implements TableModelListener{
 
     ResultSet rs;
     ResultSetMetaData rsm;
-    String[] columnNames={"序列号","设备型号","维修时间","维修人员","联系方式","维修日志"};
+    String[] columnNames={"序列号","设备编号","维修时间","维修人员","联系方式","维修日志"};
     Object[][] data =null;
     DefaultTableModel model;
     Statement statement;

@@ -3,7 +3,12 @@
  * and open the template in the editor.
  */
 package equip;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import equip.Connector;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +21,7 @@ public class NewEquip extends javax.swing.JFrame {
      * Creates new form NewEquip
      */
     MainWindow mainWindow;
-    String id,manufacturer,vendor,pro_time,an_time,an_person,phoneNamber;
+    String id,type,department,manufacturer,vendor,pro_time,an_time,an_person,phoneNamber;
     public NewEquip(MainWindow a) {
         initComponents();
         mainWindow=a;
@@ -38,19 +43,24 @@ public class NewEquip extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         t_vendor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        t_protime = new javax.swing.JTextField();
+        t_protime = new DateChooser();
         jLabel5 = new javax.swing.JLabel();
-        t_antime = new javax.swing.JTextField();
+        t_antime = new DateChooser();
         jLabel6 = new javax.swing.JLabel();
         t_anperson = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         t_phoneNumber = new javax.swing.JTextField();
         B_newEquip = new javax.swing.JButton();
         B_backToMain = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        tx_type = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        tx_department = new javax.swing.JTextField();
+        B_print = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("产品型号");
+        jLabel1.setText("产品编号");
 
         jLabel2.setText("生产厂家");
 
@@ -58,11 +68,28 @@ public class NewEquip extends javax.swing.JFrame {
 
         jLabel4.setText("生产时间");
 
+        t_protime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_protimeActionPerformed(evt);
+            }
+        });
+        t_protime.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                t_protimeFocusGained(evt);
+            }
+        });
+
         jLabel5.setText("安装时间");
 
         jLabel6.setText("安装人员");
 
         jLabel7.setText("手机号码");
+
+        t_phoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t_phoneNumberKeyTyped(evt);
+            }
+        });
 
         B_newEquip.setText("完成");
         B_newEquip.addActionListener(new java.awt.event.ActionListener() {
@@ -78,25 +105,51 @@ public class NewEquip extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("产品型号");
+
+        jLabel9.setText("所属科室");
+
+        B_print.setText("预览打印");
+        B_print.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_printActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(B_backToMain)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(B_print)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(t_id, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(t_antime, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(t_protime, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tx_type))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tx_department))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(t_id, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(t_protime, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(56, 56, 56)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -116,13 +169,8 @@ public class NewEquip extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(t_vendor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(t_antime, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(243, 243, 243)
-                        .addComponent(B_newEquip))
-                    .addComponent(B_backToMain))
+                                .addGap(76, 76, 76)
+                                .addComponent(B_newEquip)))))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,21 +187,29 @@ public class NewEquip extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jLabel4)
-                        .addComponent(t_protime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8)
+                        .addComponent(tx_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(t_vendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(t_antime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(t_anperson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(t_anperson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(tx_department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(t_phoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(B_newEquip)
+                    .addComponent(t_phoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(t_protime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t_antime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B_newEquip)
+                    .addComponent(B_print))
                 .addGap(43, 43, 43))
         );
 
@@ -173,6 +229,40 @@ public class NewEquip extends javax.swing.JFrame {
         this.setVisible(false);
         mainWindow.setVisible(true);
     }//GEN-LAST:event_B_backToMainActionPerformed
+
+    private void B_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_printActionPerformed
+        try {
+            getInput();
+            String url="http://localhost:8080/Server/print";
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler http://localhost:8080/Server/print?id="+id+""
+                    + "&type="+type+"&department="+department+"&manufacturer="+manufacturer+"&vendor="+vendor+"&pro_time="+pro_time+"&an_time="+an_time+""
+                    + "&an_person="+an_person+"&contact="+phoneNamber+"");
+        } catch (IOException ex) {
+            Logger.getLogger(NewEquip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_B_printActionPerformed
+
+    private void t_protimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_protimeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_protimeActionPerformed
+
+    private void t_protimeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_t_protimeFocusGained
+      
+       
+    }//GEN-LAST:event_t_protimeFocusGained
+
+    private void t_phoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t_phoneNumberKeyTyped
+        int keyChar=evt.getKeyChar();
+        if(keyChar>=KeyEvent.VK_0 && keyChar <= KeyEvent.VK_9)
+        {
+            
+        }
+        else
+        {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_t_phoneNumberKeyTyped
 
     /**
      * @param args the command line arguments
@@ -218,6 +308,7 @@ public class NewEquip extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_backToMain;
     private javax.swing.JButton B_newEquip;
+    private javax.swing.JButton B_print;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -225,6 +316,8 @@ public class NewEquip extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField t_anperson;
     private javax.swing.JTextField t_antime;
     private javax.swing.JTextField t_id;
@@ -232,10 +325,14 @@ public class NewEquip extends javax.swing.JFrame {
     private javax.swing.JTextField t_phoneNumber;
     private javax.swing.JTextField t_protime;
     private javax.swing.JTextField t_vendor;
+    private javax.swing.JTextField tx_department;
+    private javax.swing.JTextField tx_type;
     // End of variables declaration//GEN-END:variables
 
     private void getInput() {
         id=t_id.getText().toString();
+        type=tx_type.getText().toString();
+        department=tx_department.getText().toString();
         manufacturer=t_manufacturer.getText().toString();
         vendor=t_vendor.getText().toString();
         pro_time=t_protime.getText().toString();
@@ -249,7 +346,7 @@ public class NewEquip extends javax.swing.JFrame {
         try
         {
         Connector connect=new Connector();
-        String sql="insert into equipment VALUES ('"+id+"','"+manufacturer+"','"+vendor+"','"+pro_time+"','"+an_time+"','"+an_person+"','"+phoneNamber+"');";
+        String sql="insert into equipment VALUES ('"+id+"','"+type+"','"+department+"','"+manufacturer+"','"+vendor+"','"+pro_time+"','"+an_time+"','"+an_person+"','"+phoneNamber+"');";
         connect.statement.executeUpdate(sql);
         }
         catch(Exception e)
